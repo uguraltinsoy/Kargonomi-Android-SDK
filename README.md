@@ -28,7 +28,7 @@ This SDK provides a convenient way for Android developers to integrate with the 
 ```
 ```css
 	dependencies {
-	        implementation 'com.github.Deeplab-Studio:Kargonomi-Android-SDK:1.0.0'
+	        implementation 'com.github.Deeplab-Studio:Kargonomi-Android-SDK:1.0.1'
 	}
 ```
 **Gradle.kts**
@@ -43,7 +43,7 @@ This SDK provides a convenient way for Android developers to integrate with the 
 ```
 ```css
 	dependencies {
-	        implementation("com.github.Deeplab-Studio:Kargonomi-Android-SDK:1.0.0")
+	        implementation("com.github.Deeplab-Studio:Kargonomi-Android-SDK:1.0.1")
 	}
 ```
 
@@ -63,15 +63,16 @@ Kargonomi.init("API_KEY")
 
 **Java**
 ```java  
-Kargonomi.Address  
- .stateList(states -> System.out.println("States: " + states)) .onError(err -> System.out.println("ERROR: " + err.getMessage()));  
+Kargonomi.Address
+	.stateList(states -> System.out.println("States: " + states))
+	.onError(err -> System.out.println("ERROR: " + err.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Address.stateList { states ->  
- println("States: $states")}.onError { err ->  
- println("ERROR: ${err.message}")}  
+Kargonomi.Address
+	.stateList { states -> println("States: $states")}
+	.onError { err -> println("ERROR: ${err.message}")}  
 ```  
   
 ---  
@@ -81,14 +82,15 @@ Kargonomi.Address.stateList { states ->
 **Java**
 ```java  
 Kargonomi.Address  
- .cityList(34, cities -> System.out.println("Cities: " + cities)) .onError(err -> System.out.println("ERROR: " + err.getMessage()));  
+	.cityList(34, cities -> System.out.println("Cities: " + cities))
+	.onError(err -> System.out.println("ERROR: " + err.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Address.cityList(34) { cities ->  
- println("Cities: $cities")}.onError { err ->  
- println("ERROR: ${err.message}")}  
+Kargonomi.Address
+	.cityList(34) { cities -> println("Cities: $cities")}
+	.onError { err -> println("ERROR: ${err.message}")}  
 ```  
   
 ---  
@@ -97,15 +99,16 @@ Kargonomi.Address.cityList(34) { cities ->
 
 **Java**
 ```java  
-Kargonomi.Warehouses  
- .list(warehouses -> System.out.println("Warehouses: " + warehouses)) .onError(err -> System.out.println("ERROR: " + err.getMessage()));  
+Kargonomi.Warehouses
+	.list(warehouses -> System.out.println("Warehouses: " + warehouses))
+	.onError(err -> System.out.println("ERROR: " + err.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Warehouses.list { warehouses ->  
- println("Warehouses: $warehouses")}.onError { err ->  
- println("ERROR: ${err.message}")}  
+Kargonomi.Warehouses
+	.list { warehouses -> println("Warehouses: $warehouses")}
+	.onError { err -> println("ERROR: ${err.message}")}  
 ```  
   
 ---  
@@ -114,14 +117,18 @@ Kargonomi.Warehouses.list { warehouses ->
 
 **Java**
 ```java  
-Kargonomi.Shipments  
- .list(1) .onSuccess(list -> System.out.println("Number of shipments: " + list.getData().size())) .onError(err -> System.out.println(err.getMessage()));  
+Kargonomi.Shipments
+	.list(1)
+	.onSuccess(list -> System.out.println("Number of shipments: " + list.getData().size()))
+	.onError(err -> System.out.println(err.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Shipments.list(1)  
- .onSuccess { list -> println("Number of shipments: ${list.data.size}") } .onError { err -> println(err.message) }  
+Kargonomi.Shipments
+	.list(1)
+	.onSuccess { list -> println("Number of shipments: ${list.data.size}") }
+	.onError { err -> println(err.message) }  
 ```  
   
 ---  
@@ -130,14 +137,18 @@ Kargonomi.Shipments.list(1)
 
 **Java**
 ```java  
-Kargonomi.Shipments  
- .detail("1805405") .onSuccess(data -> System.out.println(data)) .onError(err -> System.out.println(err.getMessage()));  
+Kargonomi.Shipments
+	.detail("1805405")
+	.onSuccess(data -> System.out.println(data))
+	.onError(err -> System.out.println(err.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Shipments.detail("123456789")  
- .onSuccess { data -> println(data) } .onError { err -> println(err.message) }  
+Kargonomi.Shipments
+	.detail("123456789")
+	.onSuccess { data -> println(data) }
+	.onError { err -> println(err.message) }  
 ```  
   
 ---  
@@ -167,8 +178,10 @@ item.desi = "1";
   
 req.shipment.packages = List.of(item);  
   
-Kargonomi.Shipments.create(req)  
- .onSuccess(result -> System.out.println("Created: " + result)) .onError(err -> System.out.println("ERROR: " + err.getMessage()));  
+Kargonomi.Shipments
+	.create(req)
+	.onSuccess(result -> System.out.println("Created: " + result)) 
+	.onError(err -> System.out.println("ERROR: " + err.getMessage()));  
 ```  
 
 **Kotlin**
@@ -193,8 +206,10 @@ val req = CreateShipmentRequest().apply {
  	)
  }  
   
-Kargonomi.Shipments.create(req)  
- .onSuccess { result -> println("Created: $result") } .onError { err -> println("ERROR: ${err.message}") }  
+Kargonomi.Shipments
+	.create(req)
+	.onSuccess { result -> println("Created: $result") }
+	.onError { err -> println("ERROR: ${err.message}") }  
 ```  
   
 ---  
@@ -224,8 +239,10 @@ item.desi = "1";
   
 req.shipment.packages = List.of(item);  
 
-Kargonomi.Shipments.update("123456789", req)  
- .onSuccess(detail -> System.out.println("Updated: " + detail)) .onError(err -> err.printStackTrace());  
+Kargonomi.Shipments
+	.update("123456789", req)  
+	.onSuccess(detail -> System.out.println("Updated: " + detail))
+	.onError(err -> err.printStackTrace());  
 ```  
 
 **Kotlin**
@@ -250,8 +267,10 @@ val req = CreateShipmentRequest().apply {
  	)
  }
 
-Kargonomi.Shipments.update("123456789", req)  
- .onSuccess { detail -> println("Updated: $detail") } .onError { err -> err.printStackTrace() }  
+Kargonomi.Shipments
+	.update("123456789", req)
+	.onSuccess { detail -> println("Updated: $detail") }
+	.onError { err -> err.printStackTrace() }  
 ```  
   
 ---  
@@ -260,14 +279,18 @@ Kargonomi.Shipments.update("123456789", req)
 
 **Java**
 ```java  
-Kargonomi.Shipments.delete("123456789")  
- .onSuccess(v -> System.out.println("Deleted")) .onError(e -> System.out.println(e.getMessage()));  
+Kargonomi.Shipments
+	.delete("123456789")
+	.onSuccess(v -> System.out.println("Deleted"))
+	.onError(e -> System.out.println(e.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Shipments.delete("123456789")  
- .onSuccess { println("Deleted") } .onError { e -> println(e.message) }  
+Kargonomi.Shipments
+	.delete("123456789")
+	.onSuccess { println("Deleted") }
+	.onError { e -> println(e.message) }  
 ```  
   
 ---  
@@ -276,14 +299,18 @@ Kargonomi.Shipments.delete("123456789")
 
 **Java**
 ```java  
-Kargonomi.Shipments.cancel("123456789")  
- .onSuccess(result -> System.out.println("Shipment canceled.")) .onError(e -> System.out.println(e.getMessage()));  
+Kargonomi.Shipments
+	.cancel("123456789")
+	.onSuccess(result -> System.out.println("Shipment canceled."))
+	.onError(e -> System.out.println(e.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Shipments.cancel("123456789")  
- .onSuccess { println("Shipment canceled.") } .onError { e -> println(e.message) }  
+Kargonomi.Shipments
+	.cancel("123456789")
+	.onSuccess { println("Shipment canceled.") }
+	.onError { e -> println(e.message) }  
 ```  
   
 ---  
@@ -292,14 +319,18 @@ Kargonomi.Shipments.cancel("123456789")
 
 **Java**
 ```java  
-Kargonomi.Shipments.priceCompare("123456789")  
- .onSuccess(result -> { for (var p : result.shipping_provider_with_price) { System.out.println(p.name + " (" + p.slug + ") → " + p.price + " TL"); } }) .onError(Throwable::printStackTrace);  
+Kargonomi.Shipments
+	.priceCompare("123456789")
+	.onSuccess(result -> { for (var p : result.shipping_provider_with_price) { System.out.println(p.name + " (" + p.slug + ") → " + p.price + " TL"); } })
+	.onError(Throwable::printStackTrace);  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Shipments.priceCompare("123456789")  
- .onSuccess { result -> result.shipping_provider_with_price.forEach { p -> println("${p.name} (${p.slug}) → ${p.price} TL") } } .onError { it.printStackTrace() }  
+Kargonomi.Shipments
+	.priceCompare("123456789")
+	.onSuccess { result -> result.shipping_provider_with_price.forEach { p -> println("${p.name} (${p.slug}) → ${p.price} TL") } }
+	.onError { it.printStackTrace() }  
 ```  
   
 ---  
@@ -308,30 +339,66 @@ Kargonomi.Shipments.priceCompare("123456789")
 
 **Java**
 ```java  
-Kargonomi.Shipments.confirmPrice("123456789", "7")  
- .onSuccess(v -> System.out.println("Shipment successfully confirmed!")) .onError(e -> System.out.println(e.getMessage()));  
+Kargonomi.Shipments
+	.confirmPrice("123456789", "7")
+	.onSuccess(v -> System.out.println("Shipment successfully confirmed!"))
+	.onError(e -> System.out.println(e.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.Shipments.confirmPrice("123456789", "7")  
- .onSuccess { println("Shipment successfully confirmed!") } .onError { e -> println(e.message) }  
+Kargonomi.Shipments
+	.confirmPrice("123456789", "7")
+	.onSuccess { println("Shipment successfully confirmed!") } 
+	.onError { e -> println(e.message) }  
+```  
+
+---  
+
+## Create Barcode
+
+**Java**
+```java  
+Kargonomi.Shipments
+	.barcode("123456789", "pdf", true, true)
+	.onSuccess(br -> {
+        	System.out.println("Format: " + br.format);
+                System.out.println("Data: " + br.data); // base64 PDF
+	})
+	.onError(e -> System.out.println(e.getMessage()));
+```  
+
+**Kotlin**
+```kotlin  
+Kargonomi.Shipments
+    .barcode("123456789", "pdf", true, true)
+    .onSuccess { br ->
+        println("Format: ${br.format}")
+        println("Data: ${br.data}") // base64 PDF
+    }
+    .onError { e ->
+        println(e.message)
+    }
 ```  
   
----  
+---
 
 ## User Credit
 
 **Java**
 ```java  
-Kargonomi.User.credit()  
- .onSuccess(res -> System.out.println("Credit balance: " + res.data.credit)) .onError(e -> System.out.println(e.getMessage()));  
+Kargonomi.User
+	.credit() 
+	.onSuccess(res -> System.out.println("Credit balance: " + res.data.credit)) 
+	.onError(e -> System.out.println(e.getMessage()));  
 ```  
 
 **Kotlin**
 ```kotlin  
-Kargonomi.User.credit()  
- .onSuccess { res -> println("Credit balance: ${res.data.credit}") } .onError { e -> println(e.message) }  
+Kargonomi.User
+	.credit()
+	.onSuccess { res -> println("Credit balance: ${res.data.credit}") } 
+	.onError { e -> println(e.message) }  
 ```  
   
 ---  

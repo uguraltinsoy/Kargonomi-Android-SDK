@@ -133,15 +133,30 @@ public class ShipmentManager {
     }
 
     // ----- 7) Barcode PDF -----
-    public FutureRequest<ResponseBody> barcode(String id, String format, boolean content, boolean warning) {
-        FutureRequest<ResponseBody> fr = new FutureRequest<>();
+    public FutureRequest<BarcodeResponse> barcode(String id, String format, boolean content, boolean warning) {
+        FutureRequest<BarcodeResponse> fr = new FutureRequest<>();
 
         Kargonomi.getApi().getShipmentBarcode(id, format, content, warning)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) fr.triggerSuccess(response.body());
-                        else fr.triggerError(new Throwable("Barcode error: " + response.code()));
+                        if (response.isSuccessful()) {
+                            try {
+                                String jsonStr = response.body().string();
+                                org.json.JSONObject json = new org.json.JSONObject(jsonStr);
+
+                                BarcodeResponse br = new BarcodeResponse();
+                                br.format = json.getString("format");
+                                br.data = json.getString("data");
+
+                                fr.triggerSuccess(br);
+
+                            } catch (Exception e) {
+                                fr.triggerError(e);
+                            }
+                        } else {
+                            fr.triggerError(new Throwable("Barcode error: " + response.code()));
+                        }
                     }
 
                     @Override
@@ -152,6 +167,7 @@ public class ShipmentManager {
 
         return fr;
     }
+
 
     public FutureRequest<PriceComparisonResponse> priceCompare(String shipmentId) {
         FutureRequest<PriceComparisonResponse> fr = new FutureRequest<>();

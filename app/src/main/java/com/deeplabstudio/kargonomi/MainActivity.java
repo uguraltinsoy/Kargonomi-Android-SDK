@@ -176,5 +176,12 @@ public class MainActivity extends AppCompatActivity {
                 .onSuccess(res -> System.out.println("Kredi bakiyesi: " + res.data.credit))
                 .onError(e -> System.out.println(e.getMessage()));*/
 
+        /*Kargonomi.Shipments
+                .barcode("123456789", "pdf", true, true)
+                .onSuccess(br -> {
+                    System.out.println("Format: " + br.format);
+                    System.out.println("Data: " + br.data); // base64 PDF
+                })
+                .onError(e -> System.out.println(e.getMessage()));*/
     }
 }
